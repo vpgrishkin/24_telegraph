@@ -1,7 +1,11 @@
 # Telegraph Clone
 
 The service allows you to publish articles very simply. [Clone Telegra.ph](http://telegra.ph/)
-[On Heroku](https://)
+
+
+[On Heroku](https://damp-wildwood-94405.herokuapp.com/)
+
+Your posts available less than 24 hours (on Heroku)
 
 # How to use
 
