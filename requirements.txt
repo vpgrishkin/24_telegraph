@@ -2,3 +2,4 @@ Flask==0.12.2
 Flask-SQLAlchemy==2.2
 Jinja2==2.9.6
 uuid==1.30
+gunicorn==19.7.1
