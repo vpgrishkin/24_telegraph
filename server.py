@@ -30,7 +30,7 @@ def form():
     user_id = request.cookies.get('user_id')
     if not user_id:
         user_id = getnode()
-    res = make_response(render_template('form.html', can_post='True'))
+    res = make_response(render_template('form.html', can_post='True', disablet=''))
     res.set_cookie('user_id', str(user_id))
     return res
 
@@ -42,6 +42,9 @@ def get_post(post_id):
     post_dict = post.__dict__
     if (cookies_user_id == post.user_id):
         post_dict['can_post'] = 'True'
+        post_dict['disabled'] = ''
+    else:
+        post_dict['disabled'] = 'disabled'
     return render_template('form.html', **post_dict)
 
 
