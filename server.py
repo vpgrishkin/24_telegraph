@@ -9,7 +9,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, index=True)
     header = db.Column(db.String(80))
     signature = db.Column(db.String(100))
     body = db.Column(db.String(2000))
