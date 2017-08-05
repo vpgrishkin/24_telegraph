@@ -1,18 +1,17 @@
 # Telegraph Clone
 
-The service allows you to publish articles very simply. [Clone Telegra.ph](http://telegra.ph/)
+The service allows you to publish articles very simply and get a unique link. [Clone Telegra.ph](http://telegra.ph/)
 
 
-[On Heroku](https://damp-wildwood-94405.herokuapp.com/)
+[The example on Heroku](https://damp-wildwood-94405.herokuapp.com/) - your posts available less than 24 hours (on Heroku)
 
-Your posts available less than 24 hours (on Heroku)
+# How to use on localhost
 
-# How to use
-
-1. virtualenv -p python3 env
-2. source env/bin/activate
-3. pip install -r requirements.txt
-4. python server.py
+1. Create a virtual environment: ```virtualenv -p python3 env```
+2. Activate the virtual environment: ```source env/bin/activate```
+3. Install the requirements: ```pip install -r requirements.txt```
+4. Run server: ```python server.py```
+5. Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 # Project Goals
 
