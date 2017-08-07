@@ -52,6 +52,8 @@ def get_post(post_id):
 @app.route('/<int:post_id>', methods=['POST'])
 def add_post(post_id=None):
     user_id = request.cookies.get('user_id')
+    if user_id is None:
+        return render_template('error.html')
     if post_id:
         post = Post.query.get_or_404(post_id)
     else:
