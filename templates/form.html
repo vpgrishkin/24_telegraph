@@ -58,8 +58,10 @@
 
     <script>
     $("textarea").keyup(function() {
-      if (this.value.length > 2000)
+      if (this.value.length > 2000) {
         this.value = this.value.substr(0, 2000);
+        alert("The limit is 2000 сharacters");
+      }
     });
     </script>
   </body>
