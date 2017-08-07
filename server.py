@@ -39,7 +39,10 @@ def form():
 def get_post(post_id):
     post = Post.query.get_or_404(post_id)
     cookies_user_id = request.cookies.get('user_id')
-    post_dict = post.__dict__
+    post_dict = {}
+    post_dict['header'] = post.header
+    post_dict['signature'] = post.signature
+    post_dict['body'] = post.body
     if (cookies_user_id == post.user_id):
         post_dict['can_post'] = 'True'
         post_dict['disabled'] = ''
