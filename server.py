@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, make_response, redirect
-from uuid import getnode
+from uuid import uuid4
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -29,7 +29,7 @@ class Post(db.Model):
 def form():
     user_id = request.cookies.get('user_id')
     if not user_id:
-        user_id = getnode()
+        user_id = uuid4()
     res = make_response(render_template('form.html', can_post='True', disablet=''))
     res.set_cookie('user_id', str(user_id))
     return res
