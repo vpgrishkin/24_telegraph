@@ -24,6 +24,9 @@ class Post(db.Model):
     def __repr__(self):
         return '{}'.format(self.header)
 
+db.create_all()
+db.session.commit()
+
 
 @app.route('/', methods=['GET'])
 def form():
@@ -75,5 +78,4 @@ def add_post(post_id=None):
 
 
 if __name__ == "__main__":
-    db.create_all()
     app.run()
