@@ -15,7 +15,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True, index=True)
+    post_id = db.Column(db.Integer, primary_key=True, index=True)
     header = db.Column(db.String(HEADER_LENGTH))
     signature = db.Column(db.String(SIGNATURE_LENGTH))
     body = db.Column(db.String(BODY_LENGTH))
@@ -52,7 +52,7 @@ def get_post(post_id):
     post_dict['header'] = post.header
     post_dict['signature'] = post.signature
     post_dict['body'] = post.body
-    post_dict[body_length] = BODY_LENGTH
+    post_dict['body_length'] = BODY_LENGTH
     if (cookies_user_id == post.user_id):
         post_dict['can_post'] = 'True'
         post_dict['disabled'] = ''
@@ -79,7 +79,7 @@ def add_post(post_id=None):
     if user_id == post.user_id:
         db.session.add(post)
         db.session.commit()
-        return redirect('/{}'.format(post.id))
+        return redirect('/{}'.format(post.post_id))
     else:
         return render_template('error.html')
 
