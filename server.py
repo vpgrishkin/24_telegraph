@@ -3,6 +3,12 @@ from uuid import uuid4
 from flask_sqlalchemy import SQLAlchemy
 
 
+HEADER_LENGTH = 80
+SIGNATURE_LENGTH = 100
+BODY_LENGTH = 2000
+USERID_LENGTH = 48
+
+
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -10,10 +16,10 @@ db = SQLAlchemy(app)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True, index=True)
-    header = db.Column(db.String(80))
-    signature = db.Column(db.String(100))
-    body = db.Column(db.String(2000))
-    user_id = db.Column(db.String(48))
+    header = db.Column(db.String(HEADER_LENGTH))
+    signature = db.Column(db.String(SIGNATURE_LENGTH))
+    body = db.Column(db.String(BODY_LENGTH))
+    user_id = db.Column(db.String(USERID_LENGTH))
 
     def __init__(self, header, signature, body, user_id):
         self.header = header
@@ -33,7 +39,7 @@ def form():
     user_id = request.cookies.get('user_id')
     if not user_id:
         user_id = uuid4()
-    res = make_response(render_template('form.html', can_post='True', disablet=''))
+    res = make_response(render_template('form.html', can_post='True', disablet='', body_length=BODY_LENGTH))
     res.set_cookie('user_id', str(user_id))
     return res
 
@@ -46,6 +52,7 @@ def get_post(post_id):
     post_dict['header'] = post.header
     post_dict['signature'] = post.signature
     post_dict['body'] = post.body
+    post_dict[body_length] = BODY_LENGTH
     if (cookies_user_id == post.user_id):
         post_dict['can_post'] = 'True'
         post_dict['disabled'] = ''
